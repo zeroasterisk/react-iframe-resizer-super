@@ -47,7 +47,12 @@ by the great folks at [Kadira](https://github.com/kadirahq).
 
 ## Examples
 
-See [react-storybook]() and the code for our stories [here]().
+See our stories/demos at
+[zeroasterisk.github.io/react-iframe-resizer](https://zeroasterisk.github.io/react-iframe-resizer)
+and the
+[source of the stories/demo](https://github.com/zeroasterisk/react-iframe-resizer/blob/master/src/stories/index.js).
+and of course, more about
+[iframe-resizer](http://davidjbradshaw.github.io/iframe-resizer/)
 
 ## Acknowledgements
 
