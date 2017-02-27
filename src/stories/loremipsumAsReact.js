@@ -1,5 +1,7 @@
-export default `
-<style>* {color: blue}</style>
+import React from 'react';
+
+export default (
+  <div style={{ color: 'green' }}>
 <h1>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</h1>
 <p>Vivamus consequat nisl diam. Vestibulum porttitor tempor neque vitae condimentum. Fusce lorem tellus, egestas vitae luctus bibendum, consectetur at sapien. Suspendisse urna massa, faucibus a diam vel, hendrerit ullamcorper dui. Sed tempor erat egestas dui rhoncus gravida eu vitae ex. Proin id leo consectetur, cursus dui ac, dignissim leo. Sed at scelerisque felis. Pellentesque elementum quam quam, ac aliquet sem lobortis vel. Nulla convallis mi vitae odio tincidunt porta. Donec dictum vel arcu eget tempor. Vestibulum feugiat nisi a accumsan vulputate. Mauris placerat risus nec tortor lobortis, eu placerat eros rhoncus. Nunc sed diam nec velit ornare eleifend cursus sit amet enim.</p>
 
@@ -30,4 +32,5 @@ export default `
 <p>Morbi erat dui, placerat nec lobortis eget, suscipit eu velit. Quisque blandit, turpis nec facilisis pharetra, lectus lectus fringilla lorem, id accumsan quam enim ac leo. Quisque quis ullamcorper tellus. Fusce rutrum tristique metus, eget sagittis libero dapibus sollicitudin. Suspendisse arcu justo, vestibulum a convallis at, commodo a risus. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Morbi vulputate, ligula ac accumsan aliquam, augue purus venenatis lacus, in egestas velit leo sed dolor. Phasellus tempus ipsum enim, eu efficitur nisi commodo non. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Integer elementum molestie nisi, vel ornare lorem porttitor mollis. Curabitur vitae elit turpis. Curabitur porttitor leo vel porta posuere. Vestibulum elementum dolor in augue faucibus vestibulum. Cras nisl est, tincidunt et massa non, iaculis dapibus est. Proin sagittis leo tincidunt porttitor viverra. Praesent eget maximus odio.</p>
 
 <p>Nulla dolor orci, convallis at felis et, tristique finibus nisi. Sed eleifend lorem facilisis tortor posuere, non tempor lacus vestibulum. Nam nulla ligula, fermentum non porta ac, dictum non quam. Fusce fermentum eget dolor vitae pretium. Nullam bibendum odio id leo pharetra venenatis. In accumsan eros mauris, ac maximus nisl tempus hendrerit. Donec eget dapibus velit. Nulla ut laoreet odio. Sed in quam vel turpis pulvinar venenatis. Nunc vulputate tellus felis, sit amet rhoncus nisi blandit et. Quisque sodales efficitur feugiat. Suspendisse blandit nisi a mauris blandit, id molestie orci feugiat. Integer cursus est augue, sit amet malesuada leo viverra in. Aenean dapibus faucibus mi nec iaculis. Maecenas pulvinar arcu non sem euismod, eget hendrerit nibh egestas.</p>
-`;
+  </div>
+  );

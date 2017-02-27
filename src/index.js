@@ -5,24 +5,10 @@
  *
  */
 import React from 'react';
+import ReactDOM from 'react-dom';
 import { iframeResizer as iframeResizerLib } from 'iframe-resizer';
 
-// get content from props & optionally inject an iframe controller script
-const getInjectableContent = (props) => (
-  `
-    ${props.content}
-    ${props.iframeResizerUrl
-    ? `<script type="text/javascript" src="${props.iframeResizerUrl}"></script>`
-    : ''}
-  `
-);
-
 class IframeResizer extends React.Component {
-  constructor(props) {
-    super(props);
-    this.updateIframe = this.updateIframe.bind(this);
-    this.resizeIframe = this.resizeIframe.bind(this);
-  }
   componentDidMount() {
     // can't update until we have a mounted iframe
     this.updateIframe(this.props);
@@ -33,17 +19,75 @@ class IframeResizer extends React.Component {
     this.updateIframe(nextProps);
     this.resizeIframe(nextProps);
   }
-  updateIframe(props) {
+  updateIframe = (props) => {
+    // has src - no injected content
+    if (props.src) return;
+    // do we have content to inject (content or children)
+    const content = props.content || props.children;
+    if (!content) return;
+    // get frame to inject into
     const frame = this.refs.frame;
     if (!frame) return;
+    // verify frame document access
+    // Due to browser security, this will fail with the following error
+    //   Uncaught DOMException: Failed to read the 'contentDocument' property from 'HTMLIFrameElement':
+    //   Blocked a frame with origin "http://<hostname>" from accessing a cross-origin frame.
+    // resolve this by loading documents from the same domain name,
+    // or injecting HTML `content` vs. loading via `src`
     const doc = frame.contentDocument;
-    if (doc && props.content) {
+    if (!doc) return;
+    // replace iframe document content
+    if (typeof content === 'string') {
+      // assume this is a HTML block
+      //   we could send this in via REACT dangerously set HTML
+      //   but we are in an iframe anyway, already a red-headed step-child.
       doc.open();
-      doc.write(getInjectableContent(props));
+      doc.write(content);
       doc.close();
+    } else {
+      // assume this is a REACT component
+      doc.open();
+      doc.write('<div id="iframe-root"></div>');
+      doc.close();
+      ReactDOM.render(content, doc.getElementById('iframe-root'))
     }
   }
-  resizeIframe(props) {
+  // inject the iframe resizer "content window" script
+  injectIframeResizerUrl = () => {
+    if (!this.props.iframeResizerUrl) return;
+    const frame = this.refs.frame;
+    if (!frame) return;
+    // verify frame document access
+    // Due to browser security, this will fail with the following error
+    //   Uncaught DOMException: Failed to read the 'contentDocument' property from 'HTMLIFrameElement':
+    //   Blocked a frame with origin "http://<hostname>" from accessing a cross-origin frame.
+    // resolve this by loading documents from the same domain name,
+    // or injecting HTML `content` vs. loading via `src`
+    const doc = frame.contentDocument;
+    if (!doc) return;
+    // where can we insert into? (fail into whatever we can find)
+    let injectTarget = null;
+    ['head', 'HEAD', 'body', 'BODY', 'div', 'DIV'].forEach(tagName => {
+      if (injectTarget) return;
+      const found = doc.getElementsByTagName(tagName);
+      if (!(found && found.length)) return;
+      injectTarget = found[0];
+    });
+    if (!injectTarget) {
+      console.error('Unable to inject iframe resizer script');
+      return;
+    }
+    const resizerScriptElement = document.createElement('script');
+    resizerScriptElement.type = 'text/javascript';
+    resizerScriptElement.src = this.props.iframeResizerUrl;
+    injectTarget.appendChild(resizerScriptElement);
+  }
+  onLoad = () => {
+    this.injectIframeResizerUrl();
+    // DISABLED because it's causing a loading loop :(
+    // if (this.props.onIframeLoaded) this.props.onIframeLoaded();
+  }
+  resizeIframe = (props) => {
     const frame = this.refs.frame;
     if (!frame) return;
     if (props.iframeResizerEnable) {
@@ -51,14 +95,16 @@ class IframeResizer extends React.Component {
     }
   }
   render() {
+    const { src, id, frameBorder, className, style } = this.props;
     return (
       <iframe
         ref="frame"
-        src={this.props.src}
-        id={this.props.id}
-        frameBorder={this.props.frameBorder}
-        className={this.props.className}
-        style={this.props.style}
+        src={src}
+        id={id}
+        frameBorder={frameBorder}
+        className={className}
+        style={style}
+        onLoad={this.onLoad}
       />
     );
   }
@@ -66,27 +112,34 @@ class IframeResizer extends React.Component {
 IframeResizer.propTypes = {
   // iframe content/document
   // option 1. content of HTML to load in the iframe
-  content: React.PropTypes.string,
+  content: React.PropTypes.oneOfType([
+    React.PropTypes.string,
+    React.PropTypes.element,
+  ]),
   // option 2. src to a URL to load in the iframe
   src: React.PropTypes.string,
   // iframe-resizer controls and helpers
   iframeResizerEnable: React.PropTypes.bool,
   iframeResizerOptions: React.PropTypes.object,
-  iframeResizerUrl: React.PropTypes.string,
+  iframeResizerUrl: React.PropTypes.oneOfType([
+    React.PropTypes.string, // URL to inject
+    React.PropTypes.bool, // false = disable inject
+  ]),
   // misc props to pass through to iframe
   id: React.PropTypes.string,
   frameBorder: React.PropTypes.number,
   className: React.PropTypes.string,
   style: React.PropTypes.object,
-
+  // optional extra callback when iframe is loaded
+  // onIframeLoaded: React.PropTypes.func,
 };
 IframeResizer.defaultProps = {
   // resize iframe
   iframeResizerEnable: true,
   iframeResizerOptions: {
     // log: true,
-    autoResize: true,
-    checkOrigin: false,
+    // autoResize: true,
+    // checkOrigin: false,
     // resizeFrom: 'parent',
     // heightCalculationMethod: 'max',
     // initCallback: () => { console.log('ready!'); },

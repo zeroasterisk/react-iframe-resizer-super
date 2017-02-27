@@ -2,7 +2,7 @@
 
 This is a versatile [React](https://facebook.github.io/react/) Component
 which renders an iframe and wires in the excellent
-[Iframe Resizer](http://davidjbradshaw.com/iframe-resizer/) library.
+[Iframe Resizer](http://davidjbradshaw.github.io/iframe-resizer/) library.
 
 This Component was created with the
 [React CDK](https://github.com/kadirahq/react-cdk)
@@ -16,15 +16,16 @@ by the great folks at [Kadira](https://github.com/kadirahq).
 
     import ReactIframeResizer from 'react-iframe-resizer';
 
+
+    const iframeResizerOptions = { checkOrigin: false };
+
     const MyComponent = props => (
       <div>
         <p>Content Before Iframe (style unaffected by iframe)</p>
-        <IframeResizer
-          content={`
-            <style>p { color: green; }</style>
-            <p>Here is some green text, inside an iframe</p>
-          `}
-        >No Support For Iframes</IframeResizer>
+        <IframeResizer iframeResizerOptions={iframeResizerOptions}>
+          <style>p { color: green; }</style>
+          <p>Here is some green text, inside an iframe</p>
+        </IframeResizer>
         <p>Content After Iframe (style unaffected by iframe)</p>
       </div>
     );
@@ -36,9 +37,9 @@ by the great folks at [Kadira](https://github.com/kadirahq).
 - `iframeResizerEnable` (bool) [true]
 - `iframeResizerOptions` (object) see all supported
   [iframe-resizer](http://davidjbradshaw.github.io/iframe-resizer/) options.
-- `iframeResizerUrl` (string) URL to the client JS for injecting into the
+- `iframeResizerUrl` (string || bool) URL to the client JS for injecting into the
   iframe.  This only works for `content` type, at the moment.  The default URL
-  is `https://cdnjs.cloudflare.com/ajax/libs/iframe-resizer/3.5.8/iframeResizer.contentWindow.min.js`. If you wanted to disable this, you could set it to an empty string `''`
+  is `https://cdnjs.cloudflare.com/ajax/libs/iframe-resizer/3.5.8/iframeResizer.contentWindow.min.js`. If you wanted to disable this, you could set it to {false}
 - `frameBorder` (number) [0] optionally set a frameBorder
 - `id` (string) optionally set an id property
 - `className` (string) optionally set a className property
