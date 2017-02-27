@@ -1,20 +1,23 @@
-# React Iframe Resizer Component
+# React Iframe Resizer With Super-Powers (cross domain, resize, etc)
 
 This is a versatile [React](https://facebook.github.io/react/) Component
 which renders an iframe and wires in the excellent
 [Iframe Resizer](http://davidjbradshaw.github.io/iframe-resizer/) library.
 
+
 This Component was created with the
 [React CDK](https://github.com/kadirahq/react-cdk)
 by the great folks at [Kadira](https://github.com/kadirahq).
 
+NOTE: Renamed to `react-iframe-resizer-super` because there is already a `react-iframe-resier` npm package.
+
 ## Installation
 
-    npm install --save react-iframe-resizer iframe-resizer
+    npm install --save react-iframe-resizer-super iframe-resizer
 
 ## Usage
 
-    import ReactIframeResizer from 'react-iframe-resizer';
+    import ReactIframeResizer from 'react-iframe-resizer-super';
 
 
     const iframeResizerOptions = { checkOrigin: false };
@@ -49,16 +52,18 @@ by the great folks at [Kadira](https://github.com/kadirahq).
 ## Examples
 
 See our stories/demos at
-[zeroasterisk.github.io/react-iframe-resizer](https://zeroasterisk.github.io/react-iframe-resizer)
+[zeroasterisk.github.io/react-iframe-resizer-super](https://zeroasterisk.github.io/react-iframe-resizer-super)
 and the
-[source of the stories/demo](https://github.com/zeroasterisk/react-iframe-resizer/blob/master/src/stories/index.js).
+[source of the stories/demo](https://github.com/zeroasterisk/react-iframe-resizer-super/blob/master/src/stories/index.js).
 and of course, more about
 [iframe-resizer](http://davidjbradshaw.github.io/iframe-resizer/)
+which is where most of the iframe magic happens.
 
 ## Acknowledgements
 
 * [Iframe Resizer](http://davidjbradshaw.com/iframe-resizer/) library is
-  excellent and deals with crappy browsers.
+  excellent and deals well with crappy browsers.
+  _(caution: do not try to roll your own)_
 * [React CDK](https://github.com/kadirahq/react-cdk) makes react Components
   easy to create, document, test, and share.
 

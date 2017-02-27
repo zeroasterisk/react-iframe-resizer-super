@@ -1,10 +1,10 @@
 {
-  "name": "react-iframe-resizer",
+  "name": "react-iframe-resizer-super",
   "version": "0.0.1",
-  "description": "React Iframe Resizer Component",
+  "description": "React Iframe Resizer With Super-Powers (cross domain, resize, etc)",
   "repository": {
     "type": "git",
-    "url": "https://github.com/zeroasterisk/react-iframe-resizer.git"
+    "url": "https://github.com/zeroasterisk/react-iframe-resizer-super.git"
   },
   "license": "MIT",
   "scripts": {
