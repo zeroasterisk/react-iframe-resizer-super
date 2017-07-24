@@ -5,6 +5,7 @@
  *
  */
 import React from 'react';
+import PropTypes from 'prop-types';
 import ReactDOM from 'react-dom';
 import { iframeResizer as iframeResizerLib } from 'iframe-resizer';
 
@@ -112,26 +113,26 @@ class IframeResizer extends React.Component {
 IframeResizer.propTypes = {
   // iframe content/document
   // option 1. content of HTML to load in the iframe
-  content: React.PropTypes.oneOfType([
-    React.PropTypes.string,
-    React.PropTypes.element,
+  content: PropTypes.oneOfType([
+    PropTypes.string,
+    PropTypes.element,
   ]),
   // option 2. src to a URL to load in the iframe
-  src: React.PropTypes.string,
+  src: PropTypes.string,
   // iframe-resizer controls and helpers
-  iframeResizerEnable: React.PropTypes.bool,
-  iframeResizerOptions: React.PropTypes.object,
-  iframeResizerUrl: React.PropTypes.oneOfType([
-    React.PropTypes.string, // URL to inject
-    React.PropTypes.bool, // false = disable inject
+  iframeResizerEnable: PropTypes.bool,
+  iframeResizerOptions: PropTypes.object,
+  iframeResizerUrl: PropTypes.oneOfType([
+    PropTypes.string, // URL to inject
+    PropTypes.bool, // false = disable inject
   ]),
   // misc props to pass through to iframe
-  id: React.PropTypes.string,
-  frameBorder: React.PropTypes.number,
-  className: React.PropTypes.string,
-  style: React.PropTypes.object,
+  id: PropTypes.string,
+  frameBorder: PropTypes.number,
+  className: PropTypes.string,
+  style: PropTypes.object,
   // optional extra callback when iframe is loaded
-  // onIframeLoaded: React.PropTypes.func,
+  // onIframeLoaded: PropTypes.func,
 };
 IframeResizer.defaultProps = {
   // resize iframe
