@@ -1,6 +1,6 @@
 {
   "name": "react-iframe-resizer-super",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "description": "React Iframe Resizer With Super-Powers (cross domain, resize, etc)",
   "repository": {
     "type": "git",
