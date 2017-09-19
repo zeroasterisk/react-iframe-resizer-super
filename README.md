@@ -25,10 +25,10 @@ NOTE: Renamed to `react-iframe-resizer-super` because there is already a `react-
     const MyComponent = props => (
       <div>
         <p>Content Before Iframe (style unaffected by iframe)</p>
-        <IframeResizer iframeResizerOptions={iframeResizerOptions}>
+        <ReactIframeResizer iframeResizerOptions={iframeResizerOptions}>
           <style>p { color: green; }</style>
           <p>Here is some green text, inside an iframe</p>
-        </IframeResizer>
+        </ReactIframeResizer>
         <p>Content After Iframe (style unaffected by iframe)</p>
       </div>
     );
