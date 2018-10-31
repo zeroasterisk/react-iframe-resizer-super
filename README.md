@@ -12,26 +12,29 @@ by the great folks at [Kadira](https://github.com/kadirahq).
 NOTE: Renamed to `react-iframe-resizer-super` because there is already a `react-iframe-resier` npm package.
 
 ## Installation
-
-    npm install --save react-iframe-resizer-super iframe-resizer
+```sh
+npm install --save react-iframe-resizer-super iframe-resizer
+```
 
 ## Usage
 
-    import ReactIframeResizer from 'react-iframe-resizer-super';
+```jsx
+import ReactIframeResizer from 'react-iframe-resizer-super';
 
 
-    const iframeResizerOptions = { checkOrigin: false };
+const iframeResizerOptions = { checkOrigin: false };
 
-    const MyComponent = props => (
-      <div>
-        <p>Content Before Iframe (style unaffected by iframe)</p>
-        <ReactIframeResizer iframeResizerOptions={iframeResizerOptions}>
-          <style>p { color: green; }</style>
-          <p>Here is some green text, inside an iframe</p>
-        </ReactIframeResizer>
-        <p>Content After Iframe (style unaffected by iframe)</p>
-      </div>
-    );
+const MyComponent = props => (
+  <div>
+    <p>Content Before Iframe (style unaffected by iframe)</p>
+    <ReactIframeResizer iframeResizerOptions={iframeResizerOptions}>
+      <style>p { color: green; }</style>
+      <p>Here is some green text, inside an iframe</p>
+    </ReactIframeResizer>
+    <p>Content After Iframe (style unaffected by iframe)</p>
+  </div>
+);
+```
 
 ### Props supported
 
