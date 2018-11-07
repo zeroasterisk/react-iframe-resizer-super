@@ -15,6 +15,12 @@ class IframeResizer extends React.Component {
     this.updateIframe(this.props);
     this.resizeIframe(this.props);
   }
+  componentWillUnmount() {
+    // React will remove the iframe, however we need to manually
+    // call iframe-resizer to stop its listeners
+    const iframeResizer = this.refs.frame.iFrameResizer
+    iframeResizer && iframeResizer.removeListeners();
+  }
   componentWillReceiveProps(nextProps) {
     // can replace content if we got new props
     this.updateIframe(nextProps);
