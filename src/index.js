@@ -102,7 +102,7 @@ class IframeResizer extends React.Component {
     }
   }
   render() {
-    const { src, id, frameBorder, className, style } = this.props;
+    const { src, id, frameBorder, className, style, title } = this.props;
     return (
       <iframe
         ref="frame"
@@ -111,6 +111,7 @@ class IframeResizer extends React.Component {
         frameBorder={frameBorder}
         className={className}
         style={style}
+        title={title}
         onLoad={this.onLoad}
       />
     );
@@ -137,6 +138,7 @@ IframeResizer.propTypes = {
   frameBorder: PropTypes.number,
   className: PropTypes.string,
   style: PropTypes.object,
+  title: PropTypes.string,
   // optional extra callback when iframe is loaded
   // onIframeLoaded: PropTypes.func,
 };
@@ -159,6 +161,7 @@ IframeResizer.defaultProps = {
     width: '100%',
     minHeight: 20,
   },
+  title: '',
 };
 
 export default IframeResizer;
