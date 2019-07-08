@@ -114,7 +114,7 @@ class IframeResizer extends React.Component {
         className = legacyClassName,
         style = legacyStyle,
         ...iframeProps
-      }
+      } = {}
     } = this.props;
     return (
       <iframe
