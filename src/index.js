@@ -102,9 +102,23 @@ class IframeResizer extends React.Component {
     }
   }
   render() {
-    const { src, id, frameBorder, className, style } = this.props;
+    const {
+      src,
+      id: legacyId,
+      frameBorder: legacyFrameBorder,
+      className: legacyClassName,
+      style: legacyStyle,
+      iframeProps: {
+        id = legacyId,
+        frameBorder = legacyFrameBorder,
+        className = legacyClassName,
+        style = legacyStyle,
+        ...iframeProps
+      }
+    } = this.props;
     return (
       <iframe
+        {...iframeProps}
         ref="frame"
         src={src}
         id={id}
@@ -132,13 +146,22 @@ IframeResizer.propTypes = {
     PropTypes.string, // URL to inject
     PropTypes.bool, // false = disable inject
   ]),
-  // misc props to pass through to iframe
+  // backward compatible misc props to pass through to iframe
   id: PropTypes.string,
   frameBorder: PropTypes.number,
   className: PropTypes.string,
   style: PropTypes.object,
   // optional extra callback when iframe is loaded
   // onIframeLoaded: PropTypes.func,
+  // misc props to pass through to iframe
+  iframeProps: PropTypes.shape({
+    className: PropTypes.string,
+    frameBorder: PropTypes.number,
+    id: PropTypes.string,
+    sandbox: PropTypes.string,
+    style: PropTypes.object,
+    title: PropTypes.string
+  })
 };
 IframeResizer.defaultProps = {
   // resize iframe

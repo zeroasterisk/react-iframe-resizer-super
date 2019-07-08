@@ -46,11 +46,12 @@ const MyComponent = props => (
 - `iframeResizerUrl` (string || bool) URL to the client JS for injecting into the
   iframe.  This only works for `content` type, at the moment.  The default URL
   is `https://cdnjs.cloudflare.com/ajax/libs/iframe-resizer/3.5.8/iframeResizer.contentWindow.min.js`. If you wanted to disable this, you could set it to {false}
-- `frameBorder` (number) [0] optionally set a frameBorder
-- `id` (string) optionally set an id property
-- `className` (string) optionally set a className property
-- `style` (object) optionally set a style property
-  default `{ width: '100%', minHeight: 20 }`
+- `iframeProps` (object) will be directly passed to the iframe
+- ~~`frameBorder` (number) [0] optionally set a frameBorder~~
+- ~~`id` (string) optionally set an id property~~
+- ~~`className` (string) optionally set a className property~~
+- ~~`style` (object) optionally set a style property
+  default `{ width: '100%', minHeight: 20 }`~~
 
 ## Examples
 
