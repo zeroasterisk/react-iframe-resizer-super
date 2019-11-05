@@ -47,7 +47,7 @@
     "style-loader": "^0.13.1"
   },
   "peerDependencies": {
-    "iframe-resizer": "^3.6.2",
+    "iframe-resizer": "^4.2.3",
     "react": "^0.14.7 || ^15.0.0 || ^16.0"
   },
   "dependencies": {
